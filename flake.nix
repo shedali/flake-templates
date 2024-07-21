@@ -12,6 +12,10 @@
         path = ./latex;
         description="latex editing";
       };
+      test-unpack = {
+        path = ./test-unpack;
+        description="test unpack";
+      };
     };
 
     defaultTemplate = self.templates.xcfile;
