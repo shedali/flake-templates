@@ -12,7 +12,7 @@
         path = ./latex;
         description="latex editing";
       };
-      test-unpack = {
+      test = {
         path = ./test-unpack;
         description="test unpack";
       };
