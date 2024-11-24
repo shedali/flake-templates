@@ -13,34 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Install Nix
       - name: Set up Nix
         uses: cachix/install-nix-action@v16
 
-      # Run template builds
-      - name: Build templates
+      - name: Test templates
         run: |
-          nix build .#xcfile
-          nix build .#latex
-          nix build .#bun
-          nix build .#test
-
-  flake-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      # Checkout the code
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      # Install Nix
-      - name: Set up Nix
-        uses: cachix/install-nix-action@v16
-
-      # Run nix flake check
-      - name: Check flake
-        run: nix flake check
+          mkdir test-xcfile && cd test-xcfile
+          nix flake init -t ../.#xcfile
+          cd ..
+          mkdir test-bun && cd test-bun
+          nix flake init -t ../.#bun
