@@ -2,13 +2,20 @@
   description = "Franz flake templates";
 
   outputs = { self }: {
-    # Expose each template directly
-    templates.bun = { path = ./bun; };
-    templates.xcfile = { path = ./xcfile; };
-    templates.latex = { path = ./latex; };
-    templates.test = { path = ./test-unpack; };
+    # Templates section
+    templates = {
+      xcfile = { path = ./xcfile; };
+      bun = { path = ./bun; };
+      latex = { path = ./latex; };
+      test = { path = ./test-unpack; };
+    };
 
-    # Default template
-    defaultTemplate = self.templates.bun;
+    # Packages section for CI
+    packages.x86_64-linux = {
+      xcfile = self.templates.xcfile;
+      bun = self.templates.bun;
+      latex = self.templates.latex;
+      test = self.templates.test;
+    };
   };
 }
