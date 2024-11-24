@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-templates:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install Nix
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v16
+
+      # Run template builds
+      - name: Build templates
+        run: |
+          nix build .#xcfile
+          nix build .#latex
+          nix build .#bun
+          nix build .#test
+
+  flake-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Install Nix
+      - name: Set up Nix
+        uses: cachix/install-nix-action@v16
+
+      # Run nix flake check
+      - name: Check flake
+        run: nix flake check
