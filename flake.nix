@@ -12,6 +12,10 @@
         path = ./latex;
         description="latex editing";
       };
+      bun = {
+        path = ./bun;
+        description="bun.sh project";
+      };
       test = {
         path = ./test-unpack;
         description="test unpack";
