@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "Franz flake templates";
 
   outputs = { self, nixpkgs }: {
 
