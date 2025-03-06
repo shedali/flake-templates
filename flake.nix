@@ -15,6 +15,10 @@
         path = ./latex;
         description = "A template for LaTeX projects";
       };
+      pnpm = {
+        path = ./pnpm;
+        description = "A template for pnpm";
+      };
       test = {
         path = ./test-unpack;
         description = "A template for testing unpacking setups";
